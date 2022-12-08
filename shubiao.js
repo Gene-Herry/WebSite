@@ -12,6 +12,7 @@ var canvas = document.getElementById('canvas'),
     circleColor,
     round_arr = [];
 
+
 window.onmousemove = function(event) {
     X = event.clientX
     Y = event.clientY
