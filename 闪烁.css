@@ -1,0 +1,65 @@
+body {
+    background-color: black;
+}
+
+div {
+    margin: 200px auto;
+    width: 1000px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 120px;
+    color: transparent;
+}
+
+span {
+    animation: shan 4s linear infinite;
+    text-transform: uppercase;
+}
+
+div span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+div span:nth-child(2) {
+    animation-delay: .4s;
+}
+
+div span:nth-child(3) {
+    animation-delay: .8s;
+}
+
+div span:nth-child(4) {
+    animation-delay: 1.2s;
+}
+
+div span:nth-child(5) {
+    animation-delay: 1.6s;
+}
+
+div span:nth-child(6) {
+    animation-delay: 2s;
+}
+
+div span:nth-child(7) {
+    animation-delay: 2.4s;
+}
+
+div span:nth-child(8) {
+    animation-delay: 2.8s;
+}
+
+div span:nth-child(9) {
+    animation-delay: 3.2s;
+}
+
+@keyframes shan {
+    0%,
+    100% {
+        color: rgb(0, 230, 247);
+        text-shadow: 0 0 4px rgb(62, 40, 143), 0 0 10px rgb(16, 161, 106), 0 0 20px pink, 0 0 30px pink, 0 0 40px pink, 0 0 50px pink, 0 0 60px pink, 0 0 70px pink, 0 0 80px pink, 0 0 90px pink, 0 0 100px pink;
+    }
+    30%,
+    90% {
+        color: transparent;
+        text-shadow: none;
+    }
+}
