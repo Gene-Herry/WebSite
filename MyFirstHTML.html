@@ -6,6 +6,42 @@
 
 <head>
     <title style="color:red;">Zhaoer</title>
+    <style>
+        .button {
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+        
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .button2 {
+            background-color: white;
+            color: black;
+            border: 2px solid #008CBA;
+        }
+        
+        .button2:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+    </style>
     <script>
         //显示时间
         function displayDate() {
@@ -124,16 +160,19 @@
         }
     </script>
     <!--设置可以被勾选的对话框(尚未设置触发行为)-->
+    <hr>
     <div>
         <input type="checkbox" id="dianji">
-        <label for="dianji">
+        <label for="dianji" title="这是个好项目,不是吗">
             这个项目好!
         </label>
 
     </div>
     <hr>
-    <!--跳转(图片,URL,下载)-->
-    <p>跳转_超链接</p>
+    <!--特殊按钮-->
+    <button class="button button1">Green</button>
+    <button class="button button2">Blue</button>
+
     <a href="https://bing.com">
         <button>点击跳转至bing</button></a>
 
