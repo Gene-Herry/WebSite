@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="zh_CN">
 
 
 <head>
     <title style="color:red;">Zhaoer</title>
+
     <style>
         .button {
             border: none;
@@ -42,16 +44,6 @@
             color: white;
         }
     </style>
-    <script>
-        //显示时间
-        function displayDate() {
-            document.getElementById("thistime").innerHTML = Date();
-        }
-        //设置按下按钮隐藏时间段落
-        function demoDisplay() {
-            document.getElementById("thistime").style.display = "none";
-        }
-    </script>
     <!--网站鼠标行为主框架-->
     <style>
         #container {
@@ -93,11 +85,7 @@
     </form>
     <hr>
     <p>点击</p>
-    <!--设置按钮,点击弹出对话框显示时间-->
-    <button type="button" onclick="displayDate()">显示日期</button>
-    <p id="thistime"></p>
-    <!--设置按钮,点击隐藏上面显示的时间对话框-->
-    <input type="button" onclick="demoDisplay()" value="隐藏日期">
+
     <!--设置按钮,点击修改背景颜色-->
     <input type="button" onclick="document.body.style.backgroundColor='lavender';" value="修改背景颜色">
 
@@ -173,17 +161,144 @@
     <button class="button button1">Green</button>
     <button class="button button2">Blue</button>
 
-
+    <!--网页末端-->
+    <hr>
+    <p>查看我的别的作品!</p>
+    <a href="圣诞树.html">
+        <button>圣诞树</button>
+    </a>
+    <a href="爱心动态源码.html">
+        <button>动态爱心</button>
+    </a>
+    <a href="">
+        <button>秒表</button>
+    </a>
     <hr>
     <p>学习制作一个这样的网页!</p>
-    <a href="https://www.bing.com/search?q=HTML&form=QBLH&sp=-1&pq=html&sc=10-4&qs=n&sk=&cvid=614C6559A36E4A7A86DCB81520C01C87&ghsh=0&ghacc=0&ghpl=">
-        <button>前往bing寻找</button></a>
+    <a href=" https://www.bing.com/search?q=HTML&form=QBLH&sp=-1&pq=html&sc=10-4&qs=n&sk=&cvid=614C6559A36E4A7A86DCB81520C01C87&ghsh=0&ghacc=0&ghpl=">
+        <button>前往bing寻找</button>
+    </a>
     <br>
     <a href=" https://www.w3schools.com ">
-        <button> 去往W3Schools</button> </a>
+        <button> 去往W3Schools</button>
+    </a>
     <br>
     <a href="https://www.runoob.com/ ">
-        <button>去往菜鸟教程</button> </a>
+        <button>去往菜鸟教程</button>
+    </a>
+    <hr>
+    <div style="margin:0 auto; text-align:center">
+        <div style="font-size:48px; color: blue;" id="date">
+            <span id="year">2017</span>-<span id="month">01</span>-<span id="day">01</span>
+        </div>
+
+        <div style="font-size:140px; color: blue;" id="time">
+            <span id="h">12</span>:<span id="m">00</span>:<span id="s">00</span>.<span id="sss">000</span>
+        </div>
+    </div>
+    <script>
+        var bfullscreen = false;
+
+        function fullscreen() {
+            //document.documentElement.webkitRequestFullScreen();
+            //var docElm = document.documentElement;
+            //console.log(docElm)
+            if (!bfullscreen) {
+                if (document.requestFullscreen) { // w3c
+                    document.requestFullscreen();
+                } else if (document.mozRequestFullScreen) { // FireFox
+                    document.mozRequestFullScreen();
+                } else if (document.webkitRequestFullScreen) { // chrome
+                    document.webkitRequestFullScreen();
+                } else if (document.msRequestFullscreen) { // IE11
+                    document.msRequestFullscreen();
+                }
+                bfullscreen = true;
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                bfullscreen = false;
+            }
+        }
+
+        function fontsizereset() {
+            var ed = document.getElementById("date");
+            var et = document.getElementById("time");
+            ed.style.fontSize = "48px";
+            et.style.fontSize = "160px";
+        }
+
+        function fontsizeup() {
+            var ed = document.getElementById("date");
+            var et = document.getElementById("time");
+            var vd = ed.style.fontSize;
+            var vt = et.style.fontSize;
+            vd = parseInt(vd.substring(0, vd.length - 2)) + 16;
+            vt = parseInt(vt.substring(0, vt.length - 2)) + 24;
+            if (vd > 240)
+                vd = 240;
+            if (vt > 360)
+                vt = 360;
+            ed.style.fontSize = vd + "px";
+            et.style.fontSize = vt + "px";
+        }
+
+        function fontsizedown() {
+            var ed = document.getElementById("date");
+            var et = document.getElementById("time");
+            var vd = ed.style.fontSize;
+            var vt = et.style.fontSize;
+            vd = parseInt(vd.substring(0, vd.length - 2)) - 20;
+            vt = parseInt(vt.substring(0, vt.length - 2)) - 20;
+            if (vd < 12)
+                vd = 12;
+            if (vt < 16)
+                vt = 16;
+            ed.style.fontSize = vd + "px";
+            et.style.fontSize = vt + "px";
+        }
+
+        // -------------------------------
+        function updateDate(y, m, d) {
+            if (m < 10)
+                m = "0" + m;
+            if (d < 10)
+                d = "0" + d;
+            document.getElementById("year").innerHTML = y;
+            document.getElementById("month").innerHTML = m;
+            document.getElementById("day").innerHTML = d;
+        }
+
+        function updateTime(h, m, s, sss) {
+            if (h < 10)
+                h = "0" + h;
+            if (m < 10)
+                m = "0" + m;
+            if (s < 10)
+                s = "0" + s;
+            document.getElementById("h").innerHTML = h;
+            document.getElementById("m").innerHTML = m;
+            document.getElementById("s").innerHTML = s;
+            document.getElementById("sss").innerHTML = sss;
+        }
+
+        function update() {
+            var date = new Date();
+            updateDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+            updateTime(date.getHours(), date.getMinutes(), date.getSeconds(), parseInt(date.getMilliseconds() / 100));
+
+        };
+        setInterval("update()", 100); // 用延时的话间隔1s多1ms
+    </script>
+
+
 </body>
 
 </html>
