@@ -6,85 +6,86 @@
 
 
 <head>
-    <title style="color:red;">Zhaoer</title>
+    <main>
+        <title style="color:red;">Zhaoer</title>
 
-    <style>
-        .button {
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-        
-        .button1 {
-            background-color: white;
-            color: black;
-            border: 2px solid #4CAF50;
-        }
-        
-        .button1:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-        
-        .button2 {
-            background-color: white;
-            color: black;
-            border: 2px solid #008CBA;
-        }
-        
-        .button2:hover {
-            background-color: #008CBA;
-            color: white;
-        }
-    </style>
-    <!--网站鼠标行为主框架-->
-    <style>
-        #container {
-            width: 570px;
-            height: 200px;
-        }
-        
-        dl {
-            float: left;
-        }
-        
-        dt {
-            width: 90px;
-            height: 90px;
-            background-color: lightblue;
-            border-radius: 20px;
-            margin: 10px;
-        }
-        
-        .yellow {
-            background-color: lightgoldenrodyellow;
-        }
-        
-        .blue {
-            background-color: lightblue;
-        }
-    </style>
+        <style>
+            .button {
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+            
+            .button1 {
+                background-color: white;
+                color: black;
+                border: 2px solid #4CAF50;
+            }
+            
+            .button1:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+            
+            .button2 {
+                background-color: white;
+                color: black;
+                border: 2px solid #008CBA;
+            }
+            
+            .button2:hover {
+                background-color: #008CBA;
+                color: white;
+            }
+        </style>
+        <!--网站鼠标行为主框架-->
+        <style>
+            #container {
+                width: 570px;
+                height: 200px;
+            }
+            
+            dl {
+                float: left;
+            }
+            
+            dt {
+                width: 90px;
+                height: 90px;
+                background-color: lightblue;
+                border-radius: 20px;
+                margin: 10px;
+            }
+            
+            .yellow {
+                background-color: lightgoldenrodyellow;
+            }
+            
+            .blue {
+                background-color: lightblue;
+            }
+        </style>
 
 </head>
 
 <body>
     <h1>网站小功能源码集群</h1>
 
-    <p>上传</p>
+    <p><span style="color:rgb(218, 226, 109);font-weight:bold">上传</span></p>
     <!--上传文件,存在文件名漏洞-->
     <form action="/" method="post" enctype="multipart/form-data">
         <div><input type="file" multiple="multiple" accept="image/*" name="image"></div>
-        <div><input type="submit" value="Update"></div>
+        <div><input type="submit" value="上传"></div>
     </form>
     <hr>
-    <p>点击</p>
+    <p><span style="color:rgb(218, 226, 109);font-weight:bold">点击</span></p>
 
     <!--设置按钮,点击修改背景颜色-->
     <input type="button" onclick="document.body.style.backgroundColor='lavender';" value="修改背景颜色">
@@ -148,14 +149,20 @@
         }
     </script>
     <!--设置可以被勾选的对话框(尚未设置触发行为)-->
+    </main>
+    <!--正文结束-->
     <hr>
-    <div>
-        <input type="checkbox" id="dianji">
-        <label for="dianji" title="这是个好项目,不是吗">
-            这个项目好!
-        </label>
-
-    </div>
+    <p>觉得这个项目怎么样!请在下面选择你的评价:</p>
+    <form action="/action_page.php">
+        <input type="radio" id="html" name="fav_language" value="HTML">
+        <label for="html">好</label><br>
+        <input type="radio" id="css" name="fav_language" value="CSS">
+        <label for="css">还可以</label><br>
+        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <label for="javascript">差</label><br>
+        <br>
+        <input type="submit" value="提交">
+    </form>
     <hr>
     <!--特殊按钮-->
     <button class="button button1">Green</button>
@@ -163,16 +170,22 @@
 
     <!--网页末端-->
     <hr>
-    <p>查看我的别的作品!</p>
-    <a href="Christmas-tree.html">
-        <button>圣诞树</button>
-    </a>
-    <a href="dynamic.html">
-        <button>动态爱心</button>
-    </a>
-    <a href="">
-        <button>秒表</button>
-    </a>
+    <form action="/action_page.php">
+        <label for="cars">查看我的别的作品!</label>
+        <br> <select name="cars" id="website">
+            <optgroup label="我收集的">
+                <option href = "Christmas-tree.html">Christmas-tree</option>
+                <option href = "dynamic.html">dynamic</option>
+                <option href = "Mouse-behavior-feedback.html">Mouse-behavior-feedback</option>
+            </optgroup>
+            <optgroup label="我原创的">
+                <option value = ""></option>
+                <option value = ""></option>
+            </optgroup>
+            </select>
+        <br>
+        <input type="submit" value="就看他了!">
+    </form>
     <hr>
     <p>学习制作一个这样的网页!</p>
     <a href=" https://www.bing.com/search?q=HTML&form=QBLH&sp=-1&pq=html&sc=10-4&qs=n&sk=&cvid=614C6559A36E4A7A86DCB81520C01C87&ghsh=0&ghacc=0&ghpl=">
@@ -200,8 +213,7 @@
             qq.com
             </address>
     </details>
-
-
+    <!--Time.is-->
     <hr>
     <p>现在几点了!</p>
     <div style="margin:0 auto; text-align:center">
@@ -314,7 +326,6 @@
         };
         setInterval("update()", 100); // 用延时的话间隔1s多1ms
     </script>
-
 
 </body>
 
