@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh_CN">
+
+
+<head>
+    <main>
+        <title style="color:red;">Zhaoer</title>
+        <!--可视化鼠标行为主CSS-->
+        <style>
+            .button {
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+            
+            .button1 {
+                background-color: white;
+                color: black;
+                border: 2px solid #4CAF50;
+            }
+            
+            .button1:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+            
+            .button2 {
+                background-color: white;
+                color: black;
+                border: 2px solid #008CBA;
+            }
+            
+            .button2:hover {
+                background-color: #008CBA;
+                color: white;
+            }
+        </style>
+        <!--鼠标行为主CSS-->
+        <style>
+            #container {
+                width: 570px;
+                height: 200px;
+            }
+            
+            dl {
+                float: left;
+            }
+            
+            dt {
+                width: 90px;
+                height: 90px;
+                background-color: lightblue;
+                border-radius: 20px;
+                margin: 10px;
+            }
+            
+            .yellow {
+                background-color: lightgoldenrodyellow;
+            }
+            
+            .blue {
+                background-color: lightblue;
+            }
+        </style>
+        <!--网页尾端时间JS-->
+        <script>
+            var bfullscreen = false;
+
+            function fullscreen() {
+                //document.documentElement.webkitRequestFullScreen();
+                //var docElm = document.documentElement;
+                //console.log(docElm)
+                if (!bfullscreen) {
+                    if (document.requestFullscreen) { // w3c
+                        document.requestFullscreen();
+                    } else if (document.mozRequestFullScreen) { // FireFox
+                        document.mozRequestFullScreen();
+                    } else if (document.webkitRequestFullScreen) { // chrome
+                        document.webkitRequestFullScreen();
+                    } else if (document.msRequestFullscreen) { // IE11
+                        document.msRequestFullscreen();
+                    }
+                    bfullscreen = true;
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitCancelFullScreen) {
+                        document.webkitCancelFullScreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                    bfullscreen = false;
+                }
+            }
+
+            function fontsizereset() {
+                var ed = document.getElementById("date");
+                var et = document.getElementById("time");
+                ed.style.fontSize = "48px";
+                et.style.fontSize = "160px";
+            }
+
+            function fontsizeup() {
+                var ed = document.getElementById("date");
+                var et = document.getElementById("time");
+                var vd = ed.style.fontSize;
+                var vt = et.style.fontSize;
+                vd = parseInt(vd.substring(0, vd.length - 2)) + 16;
+                vt = parseInt(vt.substring(0, vt.length - 2)) + 24;
+                if (vd > 240)
+                    vd = 240;
+                if (vt > 360)
+                    vt = 360;
+                ed.style.fontSize = vd + "px";
+                et.style.fontSize = vt + "px";
+            }
+
+            function fontsizedown() {
+                var ed = document.getElementById("date");
+                var et = document.getElementById("time");
+                var vd = ed.style.fontSize;
+                var vt = et.style.fontSize;
+                vd = parseInt(vd.substring(0, vd.length - 2)) - 20;
+                vt = parseInt(vt.substring(0, vt.length - 2)) - 20;
+                if (vd < 12)
+                    vd = 12;
+                if (vt < 16)
+                    vt = 16;
+                ed.style.fontSize = vd + "px";
+                et.style.fontSize = vt + "px";
+            }
+
+            // -------------------------------
+            function updateDate(y, m, d) {
+                if (m < 10)
+                    m = "0" + m;
+                if (d < 10)
+                    d = "0" + d;
+                document.getElementById("year").innerHTML = y;
+                document.getElementById("month").innerHTML = m;
+                document.getElementById("day").innerHTML = d;
+            }
+
+            function updateTime(h, m, s, sss) {
+                if (h < 10)
+                    h = "0" + h;
+                if (m < 10)
+                    m = "0" + m;
+                if (s < 10)
+                    s = "0" + s;
+                document.getElementById("h").innerHTML = h;
+                document.getElementById("m").innerHTML = m;
+                document.getElementById("s").innerHTML = s;
+                document.getElementById("sss").innerHTML = sss;
+            }
+
+            function update() {
+                var date = new Date();
+                updateDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+                updateTime(date.getHours(), date.getMinutes(), date.getSeconds(), parseInt(date.getMilliseconds() / 100));
+
+            };
+            setInterval("update()", 100); // 用延时的话间隔1s多1ms
+        </script>
+
+</head>
+
+<body>
+    <h1>网站小功能源码集群</h1>
+
+    <p><span style="color:rgb(218, 226, 109);font-weight:bold">上传</span></p>
+    <!--上传文件,存在文件名漏洞-->
+    <form action="/" method="post" enctype="multipart/form-data">
+        <div><input type="file" multiple="multiple" accept="image/*" name="image"></div>
+        <div><input type="submit" value="上传"></div>
+    </form>
+    <hr>
+    <p><span style="color:rgb(218, 226, 109);font-weight:bold">点击</span></p>
+
+    <!--设置按钮,点击修改背景颜色-->
+    <input type="button" onclick="document.body.style.backgroundColor='Green';" value="修改背景颜色">
+    <br>
+    <input type="button" onclick="document.body.style.backgroundColor='';" value="改回背景颜色">
+    <!--鼠标行为定义-->
+    <div id="container">
+        <dl>
+            <dt onclick="f1(this)"></dt>
+            <dd>单击</dd>
+        </dl>
+        <dl>
+            <dt ondblclick="f2(this)"></dt>
+            <dd>双击</dd>
+        </dl>
+        <!--元素控制-->
+        <dl>
+            <dt onmouseover="this.className='yellow '" onmouseout="this.className='blue '"></dt>
+            <dd>悬停</dd>
+        </dl>
+        <dl>
+            <dt onmousedown="this.className='yellow '" onmouseup="this.className='blue '"></dt>
+            <dd>按下</dd>
+        </dl>
+        <dl>
+            <dt id="ele" onmousemove="mouseMove(event)"></dt>
+            <dd>移动</dd>
+        </dl>
+        <br><span id="echo"></span>
+    </div>
+    <script>
+        //鼠标做出行为执行命令
+        var num1 = 0,
+            num2 = 0;
+
+        function f1(e) {
+            num1++;
+            if (num1 % 2 == 0)
+                e.className = "blue";
+            else
+                e.className = "yellow";
+        }
+
+        function f2(e) {
+            num2++;
+            if (num2 % 2 == 0)
+                e.className = "blue";
+            else
+                e.className = "yellow";
+        }
+        //移动
+        function mouseMove(ev) {
+            ev = ev || window.event;
+            var el = document.getElementById("ele");
+            var x = ev.clientX - el.offsetLeft;
+            var y = ev.clientY - el.offsetTop;
+            if (x < el.offsetWidth / 2)
+                el.style.background = "lightgoldenrodyellow";
+            else
+                el.style.background = "lightpink";
+            document.getElementById("echo").innerHTML = "x:" + x + "<br>y:" + y;
+        }
+    </script>
+    <hr>
+    <!--特殊按钮-->
+    <p>特殊按钮,学习其原理中... ... ...(摘自W3school)</p>
+    <button class="button button1">Green</button>
+    <button class="button button2">Blue</button>
+    </main>
+    <!--正文结束-->
+    <hr>
+    <p>觉得这个项目怎么样!请在下面选择你的评价:</p>
+    <form action="/">
+        <input type="radio" name="appraise" value="thanks-website.html">
+        <label for="thanks">好</label><br>
+        <input type="radio" name="appraise" value="notbad">
+        <label for="notbad">还可以</label><br>
+        <input type="radio" name="appraise " value="terrible ">
+        <label for="terrible ">差</label><br>
+        <br>
+        <input type="submit" value="提交 ">
+    </form>
+
+    <!--网页末端-->
+    <hr>
+    <form action="/ ">
+        <label for="opus">查看我的别的作品!</label>
+        <br> <select name="gather" id="website ">
+            <optgroup label="我收集的 ">
+                <option href = "Christmas-tree.html ">Christmas-tree(圣诞树)</option>
+                <option href = "dynamic.html ">dynamic(动态爱心)</option>
+            </optgroup>
+            <optgroup label="我原创的 ">
+                <option href = "WebSite.html ">此网页就是我原创的!</option>
+                <option value = " "></option>
+            </optgroup>
+            </select>
+        <br>
+        <input type="submit" value="就看他了! ">
+    </form>
+    <hr>
+    <p>学习制作一个这样的网页!</p>
+    <a href=" https://www.bing.com/search?q=HTML&form=QBLH&sp=-1&pq=html&sc=10-4&qs=n&sk=&cvid=614C6559A36E4A7A86DCB81520C01C87&ghsh=0&ghacc=0&ghpl=">
+        <button>前往bing寻找</button>
+    </a>
+    <br>
+    <iframe src=" https://www.bing.com/search?q=HTML&form=QBLH&sp=-1&pq=html&sc=10-4&qs=n&sk=&cvid=614C6559A36E4A7A86DCB81520C01C87&ghsh=0&ghacc=0&ghpl=" title=" W3Schools Free Online Web Tutorials ">
+    </iframe>
+    <br>
+    <a href=" https://www.w3schools.com ">
+        <button> 去往W3Schools</button>
+    </a>
+    <br>
+    <a href="https://www.runoob.com/ ">
+        <button>去往菜鸟教程</button>
+    </a>
+    <br>
+    <iframe src="https://www.runoob.com/ " title="W3Schools Free Online Web Tutorials ">
+    </iframe>
+    <hr>
+    <details>
+        <summary>联系作者</summary>
+        <address>
+            制作人邮箱 <a href="malito:gene_ives_herry@outlook.com ">Gene Ives Herry</a>.<br>或 <a href="malito:gene_ives_herry@proton.me ">Gene Ives Herry</a>.<br>或 <a href="malito:slap-me@qq.com ">Slap-me</a>.<br> 
+            在这里找到我们 : 地球-中国<br>
+            Outlook.com<br>
+            proton.me<br>
+            qq.com
+            </address>
+    </details>
+    <!--Time.is-->
+    <hr>
+    <p>现在几点了!</p>
+    <div style="margin:0 auto; text-align:center ">
+        <div style="font-size:48px; color: rgb(105, 238, 243); " id="date ">
+            <span id="year ">2017</span>-<span id="month ">01</span>-<span id="day ">01</span>
+        </div>
+
+        <div style="font-size:140px; color: rgb(255, 197, 130); " id="time ">
+            <span id="h ">12</span>:<span id="m ">00</span>:<span id="s ">00</span>.<span id="sss ">000</span>
+        </div>
+    </div>
+
+</body>
+
+</html>
