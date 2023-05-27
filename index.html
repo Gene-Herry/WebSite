@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh_CN">
+
+
+<head>
+ 
+    <main>
+        <title style="color:red;">Zhaoer</title>
+        <!--可视化鼠标行为主CSS-->
+        <style>
+            .button {
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+            
+            .button1 {
+                background-color: white;
+                color: black;
+                border: 2px solid #4CAF50;
+            }
+            
+            .button1:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+            
+            .button2 {
+                background-color: white;
+                color: black;
+                border: 2px solid #008CBA;
+            }
+            
+            .button2:hover {
+                background-color: #008CBA;
+                color: white;
+            }
+        </style>
+        <!--鼠标行为主CSS-->
+        <style>
+            #container {
+                width: 570px;
+                height: 200px;
+            }
+            
+            dl {
+                float: left;
+            }
+            
+            dt {
+                width: 90px;
+                height: 90px;
+                background-color: lightblue;
+                border-radius: 20px;
+                margin: 10px;
+            }
+            
+            .yellow {
+                background-color: lightgoldenrodyellow;
+            }
+            
+            .blue {
+                background-color: lightblue;
+            }
+        </style>
+        <!--网页尾端时间JS-->
+
+        
+
+</head>
+
+<body>
+    <h1><a herf = "/D/Programmer/time.html" >
+    <button>现在几点了!</button>
+	</a></h1>
+    <p>文件浏览</p>
+    <a href = "/C/">
+        <button>管理我的c盘</button>
+    </a>
+    <a href = "/D/">
+        <button>管理我的d盘</button>
+    </a>
+    <a href = "/E/">
+        <button>管理我的e盘</button>
+    </a>
+    <a href = "/F/">
+        <button>管理我的f盘</button>
+    </a>
+    <a href = "/G/">
+        <button>管理我的g盘</button>
+    </a>
+    <a href = "/I/">
+        <button>管理我的i盘</button>
+    </a>
+    <a href = "/S/">
+        <button>管理我的s盘</button>
+    </a>
+    <a href = "/Z/">
+        <button>管理我的z盘</button>
+    </a>
+   
+    <p><span style="color:rgb(218, 226, 109);font-weight:bold">上传</span></p>
+    <!--上传文件,存在文件名漏洞-->
+    <form action="/" method="post" enctype="multipart/form-data">
+        <div><input type="file" multiple="multiple" accept="image/*" name="image"></div>
+        <div><input type="submit" value="上传"></div>
+    </form>
+    <hr>
+    <p><span style="color:rgb(218, 226, 109);font-weight:bold">点击</span></p>
+
+    <!--设置按钮,点击修改背景颜色-->
+    <input type="button" onclick="document.body.style.backgroundColor='Green';" value="修改背景颜色">
+    <br>
+    <input type="button" onclick="document.body.style.backgroundColor='';" value="改回背景颜色">
+    <!--鼠标行为定义-->
+    <div id="container">
+        <dl>
+            <dt onclick="f1(this)"></dt>
+            <dd>单击</dd>
+        </dl>
+        <dl>
+            <dt ondblclick="f2(this)"></dt>
+            <dd>双击</dd>
+        </dl>
+        <!--元素控制-->
+        <dl>
+            <dt onmouseover="this.className='yellow '" onmouseout="this.className='blue '"></dt>
+            <dd>悬停</dd>
+        </dl>
+        <dl>
+            <dt onmousedown="this.className='yellow '" onmouseup="this.className='blue '"></dt>
+            <dd>按下</dd>
+        </dl>
+        <dl>
+            <dt id="ele" onmousemove="mouseMove(event)"></dt>
+            <dd>移动</dd>
+        </dl>
+        <br><span id="echo"></span>
+    </div>
+    <script>
+        //鼠标做出行为执行命令
+        var num1 = 0,
+            num2 = 0;
+
+        function f1(e) {
+            num1++;
+            if (num1 % 2 == 0)
+                e.className = "blue";
+            else
+                e.className = "yellow";
+        }
+
+        function f2(e) {
+            num2++;
+            if (num2 % 2 == 0)
+                e.className = "blue";
+            else
+                e.className = "yellow";
+        }
+        //移动
+        function mouseMove(ev) {
+            ev = ev || window.event;
+            var el = document.getElementById("ele");
+            var x = ev.clientX - el.offsetLeft;
+            var y = ev.clientY - el.offsetTop;
+            if (x < el.offsetWidth / 2)
+                el.style.background = "lightgoldenrodyellow";
+            else
+                el.style.background = "lightpink";
+            document.getElementById("echo").innerHTML = "x:" + x + "<br>y:" + y;
+        }
+    </script>
+    <hr>
+    <!--特殊按钮-->
+    <p>特殊按钮,学习其原理中... ... ...(摘自W3school)</p>
+    <button class="button button1">Green</button>
+    <button class="button button2">Blue</button>
+    </main>
+    <!--正文结束-->
+    <hr>
+    <p>觉得这个项目怎么样!请在下面选择你的评价:</p>
+    <form action="/">
+        <input type="radio" name="appraise" value="thanks-website.html">
+        <label for="thanks">好</label><br>
+        <input type="radio" name="appraise" value="notbad">
+        <label for="notbad">还可以</label><br>
+        <input type="radio" name="appraise " value="terrible ">
+        <label for="terrible ">差</label><br>
+        <br>
+        <input type="submit" value="提交 ">
+    </form>
+
+    <!--网页末端-->
+    <hr>
+    <form action="/ ">
+        <label for="opus">查看我的别的作品!</label>
+        <br> <select name="gather" id="website ">
+            <optgroup label="我收集的 ">
+                <option href = "/D/Programmer/Christmas-tree.html/ ">Christmas-tree(圣诞树)</option>
+                <option href = "/D/Programmer/dynamic.html/ ">dynamic(动态爱心)</option>
+            </optgroup>
+            <optgroup label="我原创的 ">
+                <option href = "WebSite.html ">此网页就是我原创的!</option>
+                <option value = " "></option>
+            </optgroup>
+            </select>
+        <br>
+        <input type="submit" value="就看他了! ">
+    </form>
+    <hr>
+    <p>学习制作一个这样的网页!</p>
+    <a href=" https://www.bing.com/search?q=HTML&form=QBLH&sp=-1&pq=html&sc=10-4&qs=n&sk=&cvid=614C6559A36E4A7A86DCB81520C01C87&ghsh=0&ghacc=0&ghpl=">
+        <button>前往bing寻找</button>
+    </a>
+    <br>
+    <iframe src=" https://www.bing.com/search?q=HTML&form=QBLH&sp=-1&pq=html&sc=10-4&qs=n&sk=&cvid=614C6559A36E4A7A86DCB81520C01C87&ghsh=0&ghacc=0&ghpl=" title=" W3Schools Free Online Web Tutorials ">
+    </iframe>
+    <br>
+    <a href=" https://www.w3schools.com ">
+        <button> 去往W3Schools</button>
+    </a>
+    <br>
+    <a href="https://www.runoob.com/ ">
+        <button>去往菜鸟教程</button>
+    </a>
+    <br>
+    <iframe src="https://www.runoob.com/ " title="W3Schools Free Online Web Tutorials ">
+    </iframe>
+    <hr>
+    <details>
+        <summary>联系作者</summary>
+        <address>
+            制作人邮箱 <a href="malito:gene_ives_herry@outlook.com ">Gene Ives Herry</a>.<br>或 <a href="malito:gene_ives_herry@proton.me ">Gene Ives Herry</a>.<br>或 <a href="malito:slap-me@qq.com ">Slap-me</a>.<br> 
+            在这里找到我们 : 地球-中国<br>
+            Outlook.com<br>
+            proton.me<br>
+            qq.com
+            </address>
+    </details>
+<a herf = "time.html" >
+    <button>现在几点了!</button>
+	</a>
+
+    
+</body>
+
+
+</html>
